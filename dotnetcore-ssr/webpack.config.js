@@ -1,6 +1,6 @@
 const path = require('path')
 
-const { VueloaderPlugin } = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader');
 
 const merge = require('webpack-merge')
 
@@ -9,7 +9,7 @@ module.exports = (env) => {
         return {
             mode: 'development',
             output: {
-                path: path.join(__dirname, 'wwwroot/dist'),
+                path: path.join(__dirname, './wwwroot/dist'),
                 publicPath: '/dist/'
             },
             module: {
@@ -17,10 +17,6 @@ module.exports = (env) => {
                     {
                         test: /\.vue$/,
                         loader: 'vue-loader'
-                    },
-                    {
-                        test: /\.js$/,
-                        loader: 'babel-loader'
                     },
                     {
                         test: /\.css$/,
@@ -31,13 +27,13 @@ module.exports = (env) => {
                     }
                 ]
             },
-            plugin: [
-                new VueloaderPlugin()
-            ]
+            plugins: [
+                new VueLoaderPlugin()
+            ],
         }
     }
 
-    const serverConfig = merge(shareConfig, {
+    const serverConfig = merge(shareConfig(), {
         target: 'node',
         entry: {
             'bundle': './ClientApp/src/server.js'
@@ -47,7 +43,7 @@ module.exports = (env) => {
             libraryTarget: 'commonjs2',
         },
     })
-    const clientConfig = merge(shareConfig, {
+    const clientConfig = merge(shareConfig(), {
         entry: {
             'bundle': './ClientApp/src/client.js'
         },

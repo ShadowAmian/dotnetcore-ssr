@@ -22,7 +22,7 @@ namespace dotnetcore_ssr
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseDefaultFiles();
             app.UseRouting();
             app.UseStaticFiles();
             app.UseEndpoints(endpoints =>

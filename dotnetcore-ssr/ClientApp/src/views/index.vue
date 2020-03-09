@@ -1,10 +1,11 @@
 <template>
-  <div>index</div>
+  <div>
+    <h1>index</h1>
+  </div>
 </template>
 
 <script>
-console.log(111);
 export default {
-  name: "index"
+  name: "about"
 };
 </script>
